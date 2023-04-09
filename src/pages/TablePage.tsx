@@ -7,9 +7,24 @@ function TablePage() {
         {name: 'Banana', color: 'bg-yellow-500', score: 1},
         {name: 'Lime', color: 'bg-green-500', score: 4},
     ]
+
+    const config = [
+        {label: 'Name', render: (fruit: any) => fruit.name},
+        {
+            label: 'Color',
+            render: (fruit: any) => (
+                <div className={`p-3 m-2 ${fruit.color}`}></div>
+            ),
+        },
+        {label: 'Score', render: (fruit: any) => fruit.score},
+    ]
+
+    const keyFn = (data: any) => {
+        return data.name
+    }
     return (
         <div>
-            <Table data={data} />
+            <Table data={data} config={config} keyFn={keyFn} />
         </div>
     )
 }
