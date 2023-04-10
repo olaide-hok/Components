@@ -1,6 +1,5 @@
 import {Fragment, ReactNode} from 'react'
-
-interface DataProps {
+export interface DataProps {
     data: {
         name: string
         color: string
@@ -10,6 +9,7 @@ interface DataProps {
         label: string
         render: (data: any) => ReactNode
         header?: () => ReactNode
+        sortValue?: (data: any) => ReactNode
     }[]
     keyFn: (data: any) => any
 }
