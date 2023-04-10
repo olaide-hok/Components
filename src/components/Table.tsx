@@ -1,4 +1,4 @@
-import {ReactNode} from 'react'
+import {Fragment, ReactNode} from 'react'
 
 interface DataProps {
     data: {
@@ -9,12 +9,16 @@ interface DataProps {
     config: {
         label: string
         render: (data: any) => ReactNode
+        header?: () => ReactNode
     }[]
     keyFn: (data: any) => any
 }
 
 function Table({data, config, keyFn}: DataProps) {
     const renderedHeaders = config.map((column) => {
+        if (column.header) {
+            return <Fragment key={column.label}>{column.header()}</Fragment>
+        }
         return <th key={column.label}>{column.label}</th>
     })
     const renderedRows = data.map((rowData) => {
